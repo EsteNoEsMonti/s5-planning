@@ -2,9 +2,12 @@
 import React from 'react'
 import ProfileCard from './ProfileCard.jsx'
 import { useProfiles } from '../contexts/ProfileContext.jsx'
+import { useNavigate } from 'react-router-dom'
 
 const ProfileSelector = () => {
   const { profiles } = useProfiles()
+
+  const navigate = useNavigate()
 
   return (
     <div className='min-h-screen flex flex-col items-center justify-center bg-black/90 text-white'>
@@ -13,11 +16,16 @@ const ProfileSelector = () => {
       {/* contededor de cards */}
       <div className='flex flex-wrap gap-6 justify-center mx-10'>
         {profiles.map((profile) => (
-          <ProfileCard key={profile.id} name={profile.name} avatar={profile.avatar} />
+          <ProfileCard 
+            key={profile.id} 
+            name={profile.name} 
+            avatar={profile.avatar}
+            onClick={() => navigate(`/profiles/${profile.id}`)}
+          />
         ))}
 
         {/* add profile component */}
-        <div className='flex flex-col items-center cursor-pointer'>
+        <div onClick={() => navigate('/profiles/create-profile')} className='flex flex-col items-center cursor-pointer'>
           <div className='w-24 h-24 flex items-center justify-center bg-gray-700 rounded-lg shadow-md'>
             <span className='text-4xl font-bold' >+</span>
           </div>

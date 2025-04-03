@@ -1,10 +1,13 @@
 // components/ProfileSelector.jsx
 import React from 'react'
 
-const ProfileCard = ({ name, avatar }) => {
+const ProfileCard = ({ name, avatar, onClick }) => {
 
   return (
-    <div className='flex flex-col items-center cursor-pointer transition-transform hover:scale-105'>
+    <div
+      onClick={onClick}
+      className='flex flex-col items-center cursor-pointer transition-transform hover:scale-105'
+    >
       <img
         src={avatar}
         alt='profile'

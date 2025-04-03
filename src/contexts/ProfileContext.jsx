@@ -24,8 +24,19 @@ export const ProfileProvider = ({ children }) => {
   }
 
   // POST fn
+  const createProfile = async (profile) => {
+    const { data } = await axios.post(API, profile)
+    console.log('data -> ', data)
+    setProfiles((prev) => [...prev, data])
+  }
 
   // PUT fn
+  const updateProfile = async (id, updatedData) => {
+    const { data } = await axios.put(`${API}/${id}`, updatedData)
+    setProfiles((prev) =>
+      prev.map((profile) => (profile.id === id ? data : profile))
+    )
+  }
 
   // DELETE fn
 
@@ -34,7 +45,7 @@ export const ProfileProvider = ({ children }) => {
   }, [])
 
   return (
-    <ProfileContext.Provider value={{ profiles, loading }}>
+    <ProfileContext.Provider value={{ profiles, loading, createProfile, updateProfile }}>
       {children}
     </ProfileContext.Provider>
   )

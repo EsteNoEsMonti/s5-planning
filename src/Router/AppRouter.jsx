@@ -6,6 +6,8 @@ import Dashboard from '../components/Dashboard'
 import NotFound from '../components/NotFound'
 import ProfileSelector from '../components/ProfileSelector'
 import ProfileDetail from '../components/ProfileDetail'
+import ProfileCreate from '../components/ProfileCreate'
+import ProfileEdit from '../components/ProfileEdit'
 
 const AppRouter = () => {
   const navigate = useNavigate()
@@ -35,6 +37,8 @@ const AppRouter = () => {
         {/* rutas dinámicas  */}
         <Route path='/profiles' element={<ProfileSelector />} />
         <Route path='/profiles/:id' element={<ProfileDetail />} />
+        <Route path='/profiles/create-profile' element={<ProfileCreate />} />
+        <Route path='/profiles/:id/edit' element={<ProfileEdit />} />
 
         {/* ruta no encontrada  - path="*" */}
         <Route path="/not-found" element={<NotFound />} />
