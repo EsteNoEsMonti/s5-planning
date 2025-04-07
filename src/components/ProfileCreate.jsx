@@ -16,7 +16,7 @@ const ProfileCreate = () => {
       setError('Please fill in all fields')
       return
     }
-    
+
     try {
       await createProfile({ name, avatar })
       navigate('/profiles')
@@ -28,15 +28,13 @@ const ProfileCreate = () => {
 
   return (
     <div className='min-h-screen flex items-center justify-center bg-gray-800'>
-      <div className='max-w-md w-dull p-6 rounded'>
+      <div className='max-w-md w-full p-6 rounded'>
         <h2 className='text-2xl font-bold text-center text-white mb-4'>
           Createa a new Profile
         </h2>
         {/* error  */}
         {error && (
-          <p className='bg-red-500 text-white p-2 rounded mb-4'>
-            {error}
-          </p>
+          <p className="text-red-400 mb-2">{error}</p>
         )}
         {/* form  */}
         <form
@@ -70,14 +68,8 @@ const ProfileCreate = () => {
           >
             Back to Profiles
           </button>
-
-
-
         </form>
-
-
       </div>
-
     </div>
   )
 }

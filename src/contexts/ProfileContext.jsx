@@ -39,13 +39,17 @@ export const ProfileProvider = ({ children }) => {
   }
 
   // DELETE fn
+  const deleteProfile = async (id) => {
+    await axios.delete(`${API}/${id}`)
+    setProfiles((prev) => prev.filter((profile) => profile.id !== id))
+  }
 
   useEffect(() => {
     fetchProfiles()
   }, [])
 
   return (
-    <ProfileContext.Provider value={{ profiles, loading, createProfile, updateProfile }}>
+    <ProfileContext.Provider value={{ profiles, loading, createProfile, updateProfile, deleteProfile }}>
       {children}
     </ProfileContext.Provider>
   )

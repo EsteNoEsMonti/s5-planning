@@ -13,6 +13,7 @@ const ProfileEdit = () => {
   const { profiles, updateProfile } = useProfiles()
   const { id } = useParams()
 
+  // setear el nombre y avatar del perfil a editar con el id de la url
   useEffect(() => {
     const currentProfile = profiles.find((profile) => profile.id === id)
     if (currentProfile) {
@@ -40,49 +41,33 @@ const ProfileEdit = () => {
   }
 
   return (
-    <div className='min-h-screen bg-gray-800'>
-      <h2 className='text-2xl font-bold text-center text-white mb-4'>
-        Update Profile
-      </h2>
-      {error && (
-        <p className='bg-red-500 text-white p-2 rounded mb-4'>
-          {error}
-        </p>
-      )}
-      <form
-        onSubmit={handleSubmit}
-        className='flex flex-col gap-4'
-      >
-        <input
-          type='text'
-          placeholder='Name'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className='p-2 rounded bg-gray-700 text-white'
-        />
-        <input
-          type='text'
-          placeholder='URL Avatar'
-          value={avatar}
-          onChange={(e) => setAvatar(e.target.value)}
-          className='p-2 rounded bg-gray-700 text-white'
-        />
-        <button
-          type='submit'
-          className='bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200'
-        >
-          Update Profile
-        </button>
-
-        <button
-          onClick={() => navigate('/profiles')}
-          className='bg-gray-500 text-white p-2 rounded hover:bg-gray-600 transition duration-200'
-        >
-          Back to Profiles
-        </button>
-
-
-      </form>
+    <div className="min-h-screen flex items-center justify-center bg-gray-800">
+      <div className="max-w-md w-full bg-gray-800 p-6 rounded">
+        <h2 className="text-2xl font-bold text-white mb-4">Editar perfil</h2>
+        {error && <p className="text-red-400 mb-2">{error}</p>}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <input
+            type="text"
+            placeholder="Nombre"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="p-2 rounded bg-gray-700 text-white"
+          />
+          <input
+            type="text"
+            placeholder="URL del avatar"
+            value={avatar}
+            onChange={(e) => setAvatar(e.target.value)}
+            className="p-2 rounded bg-gray-700 text-white"
+          />
+          <button type="submit" className="bg-green-600 hover:bg-green-700 text-white p-2 rounded">
+            Guardar cambios
+          </button>
+          <button onClick={() => navigate('/profiles')} className="bg-gray-600 hover:bg-gray-700 text-white p-2 rounded">
+            Volver a la lista de perfiles
+          </button>
+        </form>
+      </div>
     </div>
   )
 }
